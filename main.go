@@ -9,8 +9,8 @@ import (
 
 func main() {
 	// Sample request input
-	input := map[string]interface{}{
-		"user": map[string]interface{}{
+	input := map[string]any{
+		"user": map[string]any{
 			"role":   "user",
 			"groups": []string{"developers"},
 			"age":    17,
