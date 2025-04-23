@@ -1,19 +1,17 @@
 package demo
 
+# デフォルトでは拒否
 default allow = false
 
-# Allow admins unconditionally
-allow {
-    input.user.role == "admin"
-}
+# 管理者は無条件で許可
+allow = true if input.user.role == "admin"
 
-# Allow users in 'developers' group for any action
-allow {
-    input.user.groups[_] == "developers"
-}
 
-# Allow users age >= 18 to perform 'read' action
-allow {
-    input.user.age >= 18
-    input.action == "read"
+# developers グループのメンバーはどのアクションでも許可
+allow = true if input.user.groups[_] == "developers"
+
+# 18歳以上かつ action が "read" の場合に許可
+allow = true if {
+  input.user.age >= 18
+  input.action == "read"
 }
